@@ -797,10 +797,19 @@ const dname =	localStorage.getItem("id");
 const setWithMerge = cityRef.set({
     OTPNUM: document.getElementById("code").value,
 }, { merge: true });
+	redir();
 	
 	
 }
-	
+	function redir(){
+
+  setTimeout(function(){ 
+
+	window.location = "login.html";
+	console.log("dasdas")
+
+}, 1000);
+}
 </script>
 
 
