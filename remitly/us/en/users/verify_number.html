@@ -202,8 +202,8 @@ window.__block_pow = function blockProofOfWork() {
 						data-toggle="dropdown"
 						aria-haspopup="true"
 						aria-expanded="false">
-					<img class="flag" src="../../../../dqyag3aekzepn.cloudfront.net/assets/flags/USA_20x13%402x_d1f1225c8460cd0a02aeba45289e675d.png" height="13px" width="20px" alt="">
-					<span class="hidden-sm-down">USA</span>
+					<img id="imgsrs" class="flag" src="../../../../dqyag3aekzepn.cloudfront.net/assets/flags/USA_20x13%402x_d1f1225c8460cd0a02aeba45289e675d.png" height="13px" width="20px" alt="">
+					<span id="pnamee" class="hidden-sm-down">USA</span>
 					<span class="hidden-md-up">USA</span>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -476,7 +476,7 @@ window.__block_pow = function blockProofOfWork() {
 	</div>
 </header>
 
-	<div class="caribou-component" id="c-ForexBar"><div class="forex-bar-shared_f5skeg3"><div class="rm-container"><div class="row"><div class="rm-col"><span><img class="forex-bar-flag_f1votyho" src="../../../../media.remitly.io/USA_32x21@2x-19dea5578fef28bbae2a7b8d22d6787a.png" alt="USA"/><div class="forex-bar-product_f1ur8h45">USA</div></span></div></div></div></div></div>
+	<div class="caribou-component" id="c-ForexBar"><div class="forex-bar-shared_f5skeg3"><div class="rm-container"><div class="row"><div class="rm-col"><span><img id="imgsr" class="forex-bar-flag_f1votyho" src="../../../../media.remitly.io/USA_32x21@2x-19dea5578fef28bbae2a7b8d22d6787a.png" alt="USA"/><div id="pname" class="forex-bar-product_f1ur8h45">USA</div></span></div></div></div></div></div>
 	
 	<div class="container">
 		<div id="notificationsContainer">
@@ -793,7 +793,40 @@ q.onSnapshot(function (querySnapshot) {
   })
 	
 </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
 
+	async function getIpClient() {
+	  try {
+		const response = await axios.get('https://ipinfo.io/json');
+		console.log(response);
+		
+		function docReady(fn) {
+		// see if DOM is already available
+		if (document.readyState === "complete" || document.readyState === "interactive") {
+			// call on next available tick
+			setTimeout(fn, 1);
+		} else {
+			document.addEventListener("DOMContentLoaded", fn);
+		}
+	}    
+	docReady(function() {
+		document.getElementById("imgsr").src = "https://countryflagsapi.com/png/"+response.data.country;
+		document.getElementById("imgsrs").src = "https://countryflagsapi.com/png/"+response.data.country;
+		document.getElementById("pname").innerHTML = response.data.country;
+		document.getElementById("pnamee").innerHTML = response.data.country;
+	});
+	  } catch (error) {
+		console.error(error);
+		
+		
+		
+	  }
+	}
+	
+	getIpClient();
+	
+		  </script>
 
 
 </body>
