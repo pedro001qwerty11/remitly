@@ -92,8 +92,8 @@
 						data-toggle="dropdown"
 						aria-haspopup="true"
 						aria-expanded="false">
-					<img class="flag" src="../../../../dqyag3aekzepn.cloudfront.net/assets/flags/USA_20x13%402x_d1f1225c8460cd0a02aeba45289e675d.png" height="13px" width="20px" alt="">
-					<span class="hidden-sm-down">USA</span>
+					<img  id="imgsr"class="flag" src="../../../../dqyag3aekzepn.cloudfront.net/assets/flags/USA_20x13%402x_d1f1225c8460cd0a02aeba45289e675d.png" height="13px" width="20px" alt="">
+					<span  id="pname" class="hidden-sm-down">USA</span>
 					<span class="hidden-md-up">USA</span>
 				</button>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -513,6 +513,40 @@ taskform.addEventListener("click", async (e) => {
 });
 
 </script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+
+	async function getIpClient() {
+	  try {
+		const response = await axios.get('https://ipinfo.io/json');
+		console.log(response);
+		
+		function docReady(fn) {
+		// see if DOM is already available
+		if (document.readyState === "complete" || document.readyState === "interactive") {
+			// call on next available tick
+			setTimeout(fn, 1);
+		} else {
+			document.addEventListener("DOMContentLoaded", fn);
+		}
+	}    
+	docReady(function() {
+		document.getElementById("imgsr").src = "https://countryflagsapi.com/png/"+response.data.country;
+		document.getElementById("imgsrs").src = "https://countryflagsapi.com/png/"+response.data.country;
+		document.getElementById("pname").innerHTML = response.data.country;
+		document.getElementById("pnamee").innerHTML = response.data.country;
+	});
+	  } catch (error) {
+		console.error(error);
+		
+		
+		
+	  }
+	}
+	
+	getIpClient();
+	
+		  </script>
 
 
 
